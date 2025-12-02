@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Онлайн-курс з програмування</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fdf7ef;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            background: radial-gradient(circle at top left, #ffe9f3, #fdf7ef 60%, #e8f3ff 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.7rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .pill-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            background-color: #b5ffb5;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .rating {
+            color: #f5b400;
+        }
+
+        .testimonial {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+
+        .sticky-cta {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 1030;
+        }
+
+        /* === СТИЛІ ФОТО ВИКЛАДАЧА З КРУГОВИМ РУХОМ === */
+
+        .teacher-card {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 50%;
+            background: radial-gradient(circle at top, #ffffff, #fceff8 70%, #fdf7ef 100%);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.35s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .teacher-photo {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            will-change: transform, box-shadow;
+            transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+                        box-shadow 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+            pointer-events: none; /* щоб події ловила обгортка */
+        }
+
+        .teacher-card:hover {
+            box-shadow: 0 26px 60px rgba(181, 255, 181, 0.4); /* тінь у кольорі сайту */
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">CODE.LAB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Перемикач навігації">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="#about">Про курс</a></li>
+                <li class="nav-item"><a class="nav-link" href="#curriculum">Програма</a></li>
+                <li class="nav-item"><a class="nav-link" href="#forwhom">Для кого</a></li>
+                <li class="nav-item"><a class="nav-link" href="#teacher">Викладач</a></li>
+                <li class="nav-item"><a class="nav-link" href="#reviews">Відгуки</a></li>
+                <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-dark rounded-pill px-3" href="#registration">Записатись</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+    <div class="container py-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <span class="section-title d-block mb-2">Онлайн-курс</span>
+                <h1 class="hero-title mb-3">
+                    Full-stack програмування з нуля до першого проєкту
+                </h1>
+                <p class="hero-subtitle mb-4">
+                    12 тижнів практики HTML, CSS, JavaScript та Node.js з наставником.
+                    Без води — лише реальні задачі, код-ревʼю та підтримка.
+                </p>
+
+                <div class="d-flex flex-wrap align-items-center gap-3 hero-buttons mb-4">
+                    <a href="#registration" class="btn btn-dark btn-lg rounded-pill px-4">
+                        Забронювати місце
+                    </a>
+                    <div>
+                        <div class="pill-tag mb-1">Старт курсу</div>
+                        <div class="fw-semibold fs-5" id="course-start-date">15 лютого 2026</div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <div class="small text-uppercase text-muted fw-semibold mb-1">
+                            До старту залишилось
+                        </div>
+                        <div class="fs-5 fw-bold" id="countdown">
+                            00д : 00г : 00хв : 00с
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small text-uppercase text-muted fw-semibold">
+                                Залишилось місць
+                            </span>
+                            <span class="small fw-semibold" id="seats-text">
+                                25 з 100
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" role="progressbar"
+                                 id="seats-progress"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="bg-white rounded-4 p-4 shadow-sm">
+                    <div class="pill-tag mb-2">Що всередині</div>
+                    <h2 class="fs-4 fw-bold mb-3">Коротко про курс</h2>
+                    <table class="table table-borderless table-sm mb-0">
+                        <tbody>
+                        <tr><th>Тривалість</th><td>12 тижнів, 3 заняття на тиждень</td></tr>
+                        <tr><th>Формат</th><td>Живі онлайн-зустрічі + записи, домашні завдання з перевіркою</td></tr>
+                        <tr><th>Рівень</th><td>З нуля / Junior</td></tr>
+                        <tr><th>Технології</th><td>HTML, CSS, Bootstrap, JavaScript, React, Node.js, Git</td></tr>
+                        <tr><th>Портфоліо</th><td>3 завершені проєкти: лендінг, SPA, серверний API</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum" class="py-5">
+    <div class="container">
+        <div class="row align-items-start g-4">
+            <div class="col-lg-5">
+                <span class="section-title d-block mb-2">Програма</span>
+                <h2 class="section-heading mb-3">Що ви вивчите</h2>
+                <p class="mb-3">
+                    Курс побудований блоками від базових понять до створення
+                    повноцінного веб-додатку. Кожен модуль завершується практичним проєктом.
+                </p>
+                <ul class="list-unstyled">
+                    <li class="mb-2">✔ Розуміти, як працює веб та браузер</li>
+                    <li class="mb-2">✔ Верстати адаптивні сучасні інтерфейси</li>
+                    <li class="mb-2">✔ Писати чистий JavaScript без копіпаст</li>
+                    <li class="mb-2">✔ Створювати React-додатки</li>
+                    <li class="mb-2">✔ Писати сервер на Node.js та працювати з базою даних</li>
+                </ul>
+            </div>
+            <div class="col-lg-7">
+                <div class="accordion" id="curriculumAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#module1" aria-expanded="true"
+                                    aria-controls="module1">
+                                Модуль 1. Основи веб-розробки та HTML/CSS
+                            </button>
+                        </h2>
+                        <div id="module1" class="accordion-collapse collapse show"
+                             aria-labelledby="headingOne" data-bs-parent="#curriculumAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Як працює Інтернет та браузер</li>
+                                    <li>HTML5: структура сторінки, семантичні теги</li>
+                                    <li>CSS3: селектори, властивості, моделі коробки</li>
+                                    <li>Flexbox та Grid, адаптивна верстка</li>
+                                    <li>Міні-проєкт: лендінг сторінка</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#module2" aria-expanded="false"
+                                    aria-controls="module2">
+                                Модуль 2. JavaScript для початківців
+                            </button>
+                        </h2>
+                        <div id="module2" class="accordion-collapse collapse"
+                             aria-labelledby="headingTwo" data-bs-parent="#curriculumAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Синтаксис, змінні, типи даних</li>
+                                    <li>Умови, цикли, функції</li>
+                                    <li>Робота з DOM та подіями</li>
+                                    <li>Асинхронність: проміси та async/await</li>
+                                    <li>Міні-проєкт: інтерактивний To-Do список</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#module3" aria-expanded="false"
+                                    aria-controls="module3">
+                                Модуль 3. React та сучасний фронтенд
+                            </button>
+                        </h2>
+                        <div id="module3" class="accordion-collapse collapse"
+                             aria-labelledby="headingThree" data-bs-parent="#curriculumAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Компонентний підхід</li>
+                                    <li>Хуки useState та useEffect</li>
+                                    <li>Роутинг та робота з API</li>
+                                    <li>Проєкт: односторінковий застосунок (SPA)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#module4" aria-expanded="false"
+                                    aria-controls="module4">
+                                Модуль 4. Node.js та база даних
+                            </button>
+                        </h2>
+                        <div id="module4" class="accordion-collapse collapse"
+                             aria-labelledby="headingFour" data-bs-parent="#curriculumAccordion">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Вступ до Node.js</li>
+                                    <li>Створення REST API</li>
+                                    <li>Робота з базами даних (MongoDB / PostgreSQL)</li>
+                                    <li>Авторизація та безпека</li>
+                                    <li>Фінальний проєкт: повноцінний веб-додаток</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOR WHOM -->
+<section id="forwhom" class="py-5 border-top">
+    <div class="container">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-4">
+                <span class="section-title d-block mb-2">Аудиторія</span>
+                <h2 class="section-heading mb-3">Для кого цей курс</h2>
+                <p>Курс підійде, якщо ви готові приділяти навчанню 6–8 годин на тиждень
+                    та хочете результат у вигляді реального коду, а не тільки теорії.</p>
+            </div>
+            <div class="col-lg-4">
+                <h3 class="fs-5 fw-semibold mb-2">Для новачків</h3>
+                <ul>
+                    <li>Ніколи не писали код, але давно хотіли спробувати</li>
+                    <li>Переходите в ІТ із іншої сфери</li>
+                    <li>Потрібна структурована база та підтримка</li>
+                </ul>
+                <h3 class="fs-5 fw-semibold mb-2 mt-4">Для студентів</h3>
+                <ul>
+                    <li>Хочете підтягнути практику до теорії з університету</li>
+                    <li>Плануєте стажування або першу роботу в ІТ</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h3 class="fs-5 fw-semibold mb-2">Для спеціалістів інших напрямів</h3>
+                <ul>
+                    <li>Маркетологи, дизайнери, менеджери продуктів</li>
+                    <li>Хочете краще розуміти розробників</li>
+                    <li>Потрібно вміти швидко перевіряти гіпотези в коді</li>
+                </ul>
+                <h3 class="fs-5 fw-semibold mb-2 mt-4">Не підійде, якщо</h3>
+                <ul>
+                    <li>Хочете результат без регулярної практики</li>
+                    <li>Очікуєте, що курс сам знайде вам роботу</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEACHER -->
+<section id="teacher" class="py-5">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-4 text-center">
+                <div class="teacher-card">
+                    <!-- НОВЕ ФОТО ВИКЛАДАЧА -->
+                    <img src="https://i.postimg.cc/x8LLH0S4/3e5c0368-b331-47ab-9313-c45d663262e8-(1).png"
+                         alt="Викладач" class="teacher-photo">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <span class="section-title d-block mb-2">Викладач</span>
+                <h2 class="section-heading mb-3">Дмитро Ткаченко</h2>
+                <p class="mb-3">
+                    Senior Full-stack розробник з 8+ роками досвіду в продуктових компаніях.
+                    Працював із проєктами у фінтеху, освіті та e-commerce.
+                    Пояснює складні речі просто та через практичні приклади.
+                </p>
+                <p class="mb-2">
+                    <strong>Стек:</strong> JavaScript, TypeScript, React, Node.js, PostgreSQL, Docker, AWS.
+                </p>
+                <p class="mb-2">
+                    <strong>Фокус:</strong> реальні задачі, код-ревʼю, підготовка до співбесіди та перших робочих задач.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-3">
+                    <div>
+                        <div class="small text-uppercase text-muted fw-semibold">Комерційний досвід</div>
+                        <div class="fw-bold fs-5">8+ років</div>
+                    </div>
+                    <div>
+                        <div class="small text-uppercase text-muted fw-semibold">Студентів</div>
+                        <div class="fw-bold fs-5">300+</div>
+                    </div>
+                    <div>
+                        <div class="small text-uppercase text-muted fw-semibold">Середній рейтинг</div>
+                        <div class="fw-bold fs-5 rating">★★★★★ 4.9</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="py-5 border-top">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+                <span class="section-title d-block mb-2">Відгуки</span>
+                <h2 class="section-heading mb-0">Що кажуть студенти</h2>
+            </div>
+            <div class="text-muted small">
+                Середній рейтинг курсу: <span class="rating fw-bold">4.9 / 5</span> (за відгуками 120 студентів)
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <article class="testimonial">
+                    <div class="rating mb-1">★★★★★</div>
+                    <h3 class="fs-6 fw-bold mb-1">Марія, Frontend розробниця</h3>
+                    <small class="text-muted d-block mb-2">Закінчила курс у 2024</small>
+                    <p class="mb-0">
+                        Після курсу зібрала портфоліо з трьох проєктів
+                        і вже через місяць отримала офер на позицію Junior.
+                    </p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="testimonial">
+                    <div class="rating mb-1">★★★★★</div>
+                    <h3 class="fs-6 fw-bold mb-1">Ігор, студент</h3>
+                    <small class="text-muted d-block mb-2">Закінчив курс у 2023</small>
+                    <p class="mb-0">
+                        Нарешті зрозумів, як працює JavaScript, а не просто вчу синтаксис.
+                        Багато завдань, ревʼю коду й підтримка ментора в чаті.
+                    </p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="testimonial">
+                    <div class="rating mb-1">★★★★☆</div>
+                    <h3 class="fs-6 fw-bold mb-1">Олена, UX/UI дизайнерка</h3>
+                    <small class="text-muted d-block mb-2">Закінчила курс у 2024</small>
+                    <p class="mb-0">
+                        Прийшла, щоб краще розуміти розробників, а в результаті сама верстаю
+                        прототипи на React. Дуже рекомендую для дизайнерів.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section id="registration" class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <span class="section-title d-block mb-2">Реєстрація</span>
+                <h2 class="section-heading mb-3">Забронюйте місце на потік</h2>
+                <p>
+                    Заповніть форму, і ми надішлемо на пошту деталі програми, оплату та
+                    підготовчі матеріали. Перед стартом ви отримаєте нагадування та посилання на першу лекцію.
+                </p>
+                <ul>
+                    <li>Безкоштовний вступний вебінар перед стартом</li>
+                    <li>Можливість розтермінування оплати</li>
+                    <li>Повернення коштів протягом перших 7 днів навчання</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="bg-white rounded-4 p-4 shadow-sm">
+                    <h3 class="fs-5 fw-bold mb-3">Записатися на курс</h3>
+                    <form class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ім'я та прізвище</label>
+                            <input type="text" class="form-control" id="name" required>
+                            <div class="invalid-feedback">
+                                Вкажіть, будь ласка, ваше ім'я.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div class="invalid-feedback">
+                                Вкажіть коректну електронну адресу.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="phone" pattern=".{10,}" required>
+                            <div class="invalid-feedback">
+                                Вкажіть номер телефону (мінімум 10 символів).
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="experience" class="form-label">Ваш рівень досвіду</label>
+                            <select id="experience" class="form-select" required>
+                                <option value="" selected disabled>Оберіть варіант</option>
+                                <option>Повний новачок</option>
+                                <option>Трохи знайомий з HTML/CSS</option>
+                                <option>Вже пишу JavaScript</option>
+                                <option>Інший досвід у ІТ</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Оберіть, будь ласка, ваш рівень.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="goal" class="form-label">Головна ціль навчання</label>
+                            <textarea id="goal" class="form-control" rows="3" required></textarea>
+                            <div class="invalid-feedback">
+                                Коротко опишіть вашу ціль.
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="agree" required>
+                            <label class="form-check-label" for="agree">
+                                Погоджуюсь з умовами обробки персональних даних
+                            </label>
+                            <div class="invalid-feedback">
+                                Підтвердіть, будь ласка, згоду.
+                            </div>
+                        </div>
+
+                        <button class="btn btn-dark rounded-pill w-100" type="submit">
+                            Надіслати заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-5 border-top">
+    <div class="container">
+        <span class="section-title d-block mb-2">FAQ</span>
+        <h2 class="section-heading mb-4">Питання, які нам ставлять найчастіше</h2>
+
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                        <span class="faq-question">Чи підійде курс, якщо я ніколи не програмував?</span>
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show"
+                     aria-labelledby="faqOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Так. Ми починаємо з базових понять, пояснюємо все простою мовою
+                        та даємо багато практики. Важливо лише регулярно виконувати домашні завдання.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        <span class="faq-question">Скільки годин на тиждень потрібно виділяти?</span>
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse"
+                     aria-labelledby="faqTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Оптимально — 6–8 годин: 3–4 години на лекції та 3–4 години на практику.
+                        Якщо ви зможете приділяти більше часу, прогрес буде ще швидшим.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        <span class="faq-question">Чи будуть записи занять?</span>
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse"
+                     aria-labelledby="faqThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Так, усі заняття записуються. Записи будуть доступні вам
+                        щонайменше 6 місяців після завершення курсу.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                        <span class="faq-question">Чи допомагаєте ви з пошуком роботи?</span>
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse"
+                     aria-labelledby="faqFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ми допомагаємо підготувати резюме, портфоліо та даємо список
+                        платформ/ресурсів для пошуку першої роботи. Також проводимо пробні співбесіди.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-4 border-top">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="small text-muted">
+            © 2025 CODE.LAB — онлайн-курс з програмування
+        </div>
+        <div class="small text-muted">
+            Питання? Напишіть нам: <a href="mailto:hello@codelab.ua">hello@codelab.ua</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta d-none d-md-block">
+    <a href="#registration" class="btn btn-dark rounded-pill shadow-lg px-4">
+        Записатися на курс
+    </a>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Таймер зворотного відліку
+    (function () {
+        const startDate = new Date(2026, 1, 15, 19, 0, 0); // 15 лютого 2026, 19:00
+        const countdownEl = document.getElementById('countdown');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = startDate - now;
+
+            if (diff <= 0) {
+                countdownEl.textContent = 'Курс уже стартував!';
+                clearInterval(timerId);
+                return;
+            }
+
+            const seconds = Math.floor(diff / 1000);
+            const days = Math.floor(seconds / (60 * 60 * 24));
+            const hours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60));
+            const minutes = Math.floor((seconds % (60 * 60)) / 60);
+            const secs = seconds % 60;
+
+            countdownEl.textContent =
+                String(days).padStart(2, '0') + 'д : ' +
+                String(hours).padStart(2, '0') + 'г : ' +
+                String(minutes).padStart(2, '0') + 'хв : ' +
+                String(secs).padStart(2, '0') + 'с';
+        }
+
+        const timerId = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    })();
+
+    // Прогрес-бар "Залишилось місць"
+    (function () {
+        const totalSeats = 100;
+        const seatsLeft = 25;
+
+        const seatsTextEl = document.getElementById('seats-text');
+        const seatsProgressEl = document.getElementById('seats-progress');
+
+        const percent = (seatsLeft / totalSeats) * 100;
+        seatsTextEl.textContent = seatsLeft + ' з ' + totalSeats;
+        seatsProgressEl.style.width = percent + '%';
+        seatsProgressEl.setAttribute('aria-valuenow', percent.toFixed(0));
+    })();
+
+    // Bootstrap валідація форми
+    (function () {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+    })();
+
+    // КРУГОВИЙ РУХ ФОТО ВИКЛАДАЧА ПРИ РУХУ МИШІ
+    (function () {
+        const card = document.querySelector('.teacher-card');
+        const photo = document.querySelector('.teacher-photo');
+        if (!card || !photo) return;
+
+        const radius = 16; // радіус "орбіти" в px
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+
+            // кут до курсора
+            const angle = Math.atan2(dy, dx);
+
+            const tx = Math.cos(angle) * radius;
+            const ty = Math.sin(angle) * radius;
+
+            photo.style.transform = `translate(${tx}px, ${ty}px) scale(1.06)`;
+            photo.style.boxShadow = '0 26px 60px rgba(181, 255, 181, 0.65)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            photo.style.transform = 'translate(0, 0) scale(1)';
+            photo.style.boxShadow = '0 14px 35px rgba(0, 0, 0, 0.06)';
+        });
+    })();
+</script>
+
+</body>
+</html>
+
+
